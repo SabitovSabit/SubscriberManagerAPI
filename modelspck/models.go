@@ -12,3 +12,7 @@ type BaseResult struct{
 	Result   bool
 	Message  string
 }
+
+type Config struct{
+	SqlConnStr string
+}

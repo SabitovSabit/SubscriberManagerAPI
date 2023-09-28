@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	
 	models "subscriptionApi/modelspck"
 	sqlserver "subscriptionApi/sqlserverpck"
 	utils "subscriptionApi/utilspck"
@@ -126,7 +127,7 @@ func updateSubscriber(w http.ResponseWriter, r *http.Request) {
 	utils.JsonDeserialize(subs, &updateSub)
 
 	result, err := sqlserver.Db.Prepare("update subscribers set name=? ,is_free=?,add_date=?  where id=?")
-	_, err = result.Exec(updateSub.Name,updateSub.IsFree,updateSub.AddDate, id)
+	_, err = result.Exec(updateSub.Name, updateSub.IsFree, updateSub.AddDate, id)
 
 	if err != nil {
 		log.Println(err)
@@ -156,6 +157,7 @@ func handleRequests() {
 }
 
 func main() {
+	
 	sqlserver.Init()
 	handleRequests()
 	sqlserver.Db.Close()
